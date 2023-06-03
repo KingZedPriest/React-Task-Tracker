@@ -1,0 +1,22 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "text": "Investment Website",
+      "day": "Feb 17th at 10:00pm",
+      "reminder": true
+    },
+    {
+      "text": "Sleep ",
+      "day": "Tonight",
+      "reminder": false,
+      "id": 2
+    },
+    {
+      "text": "Build Your Portfolio Website",
+      "day": "Tomorrow",
+      "reminder": false,
+      "id": 3
+    }
+  ]
+}
