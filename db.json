@@ -7,9 +7,7 @@
       "reminder": true
     },
     {
-      "text": "Sleep ",
-      "day": "Tonight",
-      "reminder": false,
+      "reminder": true,
       "id": 2
     },
     {
