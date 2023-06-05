@@ -8,4 +8,4 @@ const Task = ({task, onDelete, onToggle}) => {
   )
 }
 
-export default Task
+export default Task;

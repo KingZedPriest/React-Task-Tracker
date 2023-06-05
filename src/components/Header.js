@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Button from "./Button";
+import Button from "./Button.js";
 
 const Header = ({ title, show, showStatus }) => {
   return (

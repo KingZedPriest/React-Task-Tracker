@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
+import About from "./components/About"
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
 
@@ -28,7 +31,7 @@ function App() {
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(task),
     });
-    const data = await response.json()
+    const data = await response.json();
     setTasks([...tasks, data]);
 
     // const id = Math.floor(Math.random() * 1000) + 1;
@@ -44,21 +47,21 @@ function App() {
 
   // Fetch Task
   const fetchTask = async (id) => {
-    const response = await fetch(`http://localhost:5000/task/${id}`);
+    const response = await fetch(`http://localhost:5000/tasks/${id}`);
     const data = await response.json();
     return data;
   };
 
   //Toggle Reminder
   const toggleReminder = async (id) => {
-    const whichTask = await fetchTask(id)
-    const updatedTask = {...whichTask, reminder: !whichTask.reminder}
-    const response = await fetch (`http://localhost:5000/tasks/${id}`, {
+    const whichTask = await fetchTask(id);
+    const updatedTask = { ...whichTask, reminder: !whichTask.reminder };
+    const response = await fetch(`http://localhost:5000/tasks/${id}`, {
       method: "PUT",
-      headers: {"Content-type": "application/json"},
-      body: JSON.stringify(updatedTask)
-    })
-    const data = await response.json()
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(updatedTask),
+    });
+    const data = await response.json();
 
     setTasks(
       tasks.map((task) =>
@@ -71,16 +74,30 @@ function App() {
   const show = () => {
     setShowAddBtn(!showAddBtn);
   };
-  return (
-    <div className="container">
-      <Header show={show} showStatus={showAddBtn} />
+  const Home = () => {
+    return(
+      <>
       {showAddBtn && <AddTask onAdd={addTask} />}
       {tasks.length > 0 ? (
         <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
       ) : (
         "You Don't Have Any Tasks."
       )}
+      </>
+    )
+  }
+
+  return (
+    <Router>
+    <div className="container">
+      <Header show={show} showStatus={showAddBtn} />
+      <Routes>
+      <Route path="/" exact element={<Home />} />
+      <Route path="/about" element= {<About />} />
+      </Routes>
+      <Footer />
     </div>
+    </Router>
   );
 }
 
