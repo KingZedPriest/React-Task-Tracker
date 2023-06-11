@@ -70,10 +70,11 @@ function App() {
     );
   };
 
-  // Show the add form
+  // Show The Add Form
   const show = () => {
     setShowAddBtn(!showAddBtn);
   };
+  // For The Home Page
   const Home = () => {
     return(
       <>
